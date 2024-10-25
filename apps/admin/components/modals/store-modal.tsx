@@ -52,7 +52,7 @@ export const StoreModal = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="E-Commerce" {...field} />
+                      <Input placeholder="Enter your store name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
