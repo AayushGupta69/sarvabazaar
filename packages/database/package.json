@@ -1,0 +1,15 @@
+{
+  "name": "@sarvabazaar/database",
+  "version": "0.0.0",
+  "exports": {
+    "./client": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@sarvabazaar/typescript-config": "workspace:*",
+    "@types/node": "^22.8.1",
+    "prisma": "^5.21.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.21.1"
+  }
+}
