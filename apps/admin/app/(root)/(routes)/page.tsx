@@ -13,9 +13,5 @@ export default function Home() {
     }
   }, [isOpen, onOpen]);
 
-  return (
-    <div>
-      <p>Hello Admin Dashboard</p>
-    </div>
-  );
+  return null;
 }
