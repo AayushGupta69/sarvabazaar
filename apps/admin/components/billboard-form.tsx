@@ -22,7 +22,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/image-upload";
 
 interface BillboardFormProps {
@@ -41,7 +40,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
   const title = initalData ? "Edit billboard" : "Create billboard";
   const description = initalData ? "Edit a billboard" : "Add a new billboard";
   const toastMessage = initalData
