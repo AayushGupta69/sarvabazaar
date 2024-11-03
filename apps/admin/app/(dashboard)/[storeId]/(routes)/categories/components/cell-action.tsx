@@ -1,6 +1,6 @@
 "use client";
 
-import { BillboardColumn } from "./columns";
+import { CategoryColumn } from "./columns";
 import { Button } from "@sarvabazaar/ui/components/ui/button";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ import toast from "react-hot-toast";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface CellActionProps {
-  data: BillboardColumn;
+  data: CategoryColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
