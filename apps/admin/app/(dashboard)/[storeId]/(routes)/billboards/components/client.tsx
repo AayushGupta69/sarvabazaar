@@ -5,7 +5,7 @@ import { Button } from "@sarvabazaar/ui/components/ui/button";
 import { Separator } from "@sarvabazaar/ui/components/ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { BillboardColumn, columns } from "@/components/columns";
+import { BillboardColumn, columns } from "./columns";
 import { DataTable } from "@/components/data-table";
 import { ApiList } from "@/components/api-list";
 
