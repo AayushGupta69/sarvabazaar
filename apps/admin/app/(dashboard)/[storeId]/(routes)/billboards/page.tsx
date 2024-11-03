@@ -1,5 +1,5 @@
-import { BillboardClient } from "@/components/client";
-import { BillboardColumn } from "@/components/columns";
+import { BillboardClient } from "./components/client";
+import { BillboardColumn } from "./components/columns";
 import prisma from "@sarvabazaar/database/client";
 import { format } from "date-fns";
 
