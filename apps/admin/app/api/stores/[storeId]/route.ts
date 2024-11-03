@@ -10,7 +10,7 @@ export async function PATCH(
     params: {
       storeId: string;
     };
-  }
+  },
 ) {
   try {
     const { userId } = await auth();
@@ -54,7 +54,7 @@ export async function DELETE(
     params: {
       storeId: string;
     };
-  }
+  },
 ) {
   try {
     const { userId } = await auth();

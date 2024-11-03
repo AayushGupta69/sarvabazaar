@@ -61,7 +61,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
       if (initalData) {
         await axios.patch(
           `/api/${params.storeId}/billboards/${params.billboardId}`,
-          data
+          data,
         );
       } else {
         await axios.post(`/api/${params.storeId}/billboards`, data);
@@ -80,14 +80,14 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/billboards/${params.billboardId}`
+        `/api/${params.storeId}/billboards/${params.billboardId}`,
       );
       router.push(`/${params.storeId}/billboards`);
       router.refresh();
       toast.success("Billboard deleted successfully!");
     } catch (e) {
       toast.error(
-        "Make sure you have removed all the categories using this billboard first from the store."
+        "Make sure you have removed all the categories using this billboard first from the store.",
       );
     } finally {
       setLoading(false);

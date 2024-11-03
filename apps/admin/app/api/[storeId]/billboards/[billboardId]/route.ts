@@ -10,7 +10,7 @@ export async function GET(
     params: {
       billboardId: string;
     };
-  }
+  },
 ) {
   try {
     if (!params.billboardId) {
@@ -39,7 +39,7 @@ export async function PATCH(
       storeId: string;
       billboardId: string;
     };
-  }
+  },
 ) {
   try {
     const { userId } = await auth();
@@ -99,7 +99,7 @@ export async function DELETE(
       storeId: string;
       billboardId: string;
     };
-  }
+  },
 ) {
   try {
     const { userId } = await auth();
