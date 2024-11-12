@@ -24,7 +24,7 @@ import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface SizeFormProps {
-  initalData: Size | null;
+  initialData: Size | null;
 }
 
 const formSchema = z.object({
@@ -34,21 +34,21 @@ const formSchema = z.object({
 
 type SizeFormValues = z.infer<typeof formSchema>;
 
-export const SizeForm: React.FC<SizeFormProps> = ({ initalData }) => {
+export const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const router = useRouter();
-  const title = initalData ? "Edit size" : "Create size";
-  const description = initalData ? "Edit a size" : "Add a new size";
-  const toastMessage = initalData
+  const title = initialData ? "Edit size" : "Create size";
+  const description = initialData ? "Edit a size" : "Add a new size";
+  const toastMessage = initialData
     ? "Size updated successfully!"
     : "Size created successfully!";
-  const action = initalData ? "Save Changes" : "Create";
+  const action = initialData ? "Save Changes" : "Create";
 
   const form = useForm<SizeFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initalData || {
+    defaultValues: initialData || {
       name: "",
       value: "",
     },
@@ -57,7 +57,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initalData }) => {
   const onSubmit = async (data: SizeFormValues) => {
     try {
       setLoading(true);
-      if (initalData) {
+      if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/sizes/${params.sizeId}`,
           data
@@ -102,7 +102,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({ initalData }) => {
       />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
-        {initalData && (
+        {initialData && (
           <Button
             disabled={loading}
             variant="destructive"
