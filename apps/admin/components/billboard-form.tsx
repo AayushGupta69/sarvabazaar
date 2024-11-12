@@ -25,7 +25,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import ImageUpload from "@/components/image-upload";
 
 interface BillboardFormProps {
-  initalData: Billboard | null;
+  initialData: Billboard | null;
 }
 
 const formSchema = z.object({
@@ -35,21 +35,23 @@ const formSchema = z.object({
 
 type BillboardFormValues = z.infer<typeof formSchema>;
 
-export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
+export const BillboardForm: React.FC<BillboardFormProps> = ({
+  initialData,
+}) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const router = useRouter();
-  const title = initalData ? "Edit billboard" : "Create billboard";
-  const description = initalData ? "Edit a billboard" : "Add a new billboard";
-  const toastMessage = initalData
+  const title = initialData ? "Edit billboard" : "Create billboard";
+  const description = initialData ? "Edit a billboard" : "Add a new billboard";
+  const toastMessage = initialData
     ? "Billboard updated successfully!"
     : "Billboard created successfully!";
-  const action = initalData ? "Save Changes" : "Create";
+  const action = initialData ? "Save Changes" : "Create";
 
   const form = useForm<BillboardFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initalData || {
+    defaultValues: initialData || {
       label: "",
       imageUrl: "",
     },
@@ -58,10 +60,10 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
   const onSubmit = async (data: BillboardFormValues) => {
     try {
       setLoading(true);
-      if (initalData) {
+      if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/billboards/${params.billboardId}`,
-          data,
+          data
         );
       } else {
         await axios.post(`/api/${params.storeId}/billboards`, data);
@@ -80,14 +82,14 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/billboards/${params.billboardId}`,
+        `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.push(`/${params.storeId}/billboards`);
       router.refresh();
       toast.success("Billboard deleted successfully!");
     } catch (e) {
       toast.error(
-        "Make sure you have removed all the categories using this billboard first from the store.",
+        "Make sure you have removed all the categories using this billboard first from the store."
       );
     } finally {
       setLoading(false);
@@ -105,7 +107,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({ initalData }) => {
       />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
-        {initalData && (
+        {initialData && (
           <Button
             disabled={loading}
             variant="destructive"
