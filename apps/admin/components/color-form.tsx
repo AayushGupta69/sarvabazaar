@@ -24,7 +24,7 @@ import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "@/components/modals/alert-modal";
 
 interface ColorFormProps {
-  initalData: Color | null;
+  initialData: Color | null;
 }
 
 const formSchema = z.object({
@@ -36,21 +36,21 @@ const formSchema = z.object({
 
 type ColorFormValues = z.infer<typeof formSchema>;
 
-export const ColorForm: React.FC<ColorFormProps> = ({ initalData }) => {
+export const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const router = useRouter();
-  const title = initalData ? "Edit color" : "Create color";
-  const description = initalData ? "Edit a color" : "Add a new color";
-  const toastMessage = initalData
+  const title = initialData ? "Edit color" : "Create color";
+  const description = initialData ? "Edit a color" : "Add a new color";
+  const toastMessage = initialData
     ? "Color updated successfully!"
     : "Color created successfully!";
-  const action = initalData ? "Save Changes" : "Create";
+  const action = initialData ? "Save Changes" : "Create";
 
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initalData || {
+    defaultValues: initialData || {
       name: "",
       value: "",
     },
@@ -59,7 +59,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initalData }) => {
   const onSubmit = async (data: ColorFormValues) => {
     try {
       setLoading(true);
-      if (initalData) {
+      if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/colors/${params.colorId}`,
           data
@@ -104,7 +104,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({ initalData }) => {
       />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
-        {initalData && (
+        {initialData && (
           <Button
             disabled={loading}
             variant="destructive"
