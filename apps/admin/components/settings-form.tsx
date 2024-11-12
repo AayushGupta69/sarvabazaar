@@ -26,7 +26,7 @@ import { ApiAlert } from "@/components/api-alert";
 import { useOrigin } from "@/hooks/use-origin";
 
 interface SettingsFormProps {
-  initalData: Store;
+  initialData: Store;
 }
 
 const formSchema = z.object({
@@ -35,7 +35,7 @@ const formSchema = z.object({
 
 type SettingsFormValues = z.infer<typeof formSchema>;
 
-export const SettingsForm: React.FC<SettingsFormProps> = ({ initalData }) => {
+export const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const params = useParams();
@@ -44,7 +44,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initalData }) => {
 
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initalData,
+    defaultValues: initialData,
   });
 
   const onSubmit = async (data: SettingsFormValues) => {
@@ -69,7 +69,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ initalData }) => {
       toast.success("Store deleted successfully!");
     } catch (e) {
       toast.error(
-        "Make sure you have removed all the products and categories first from the store.",
+        "Make sure you have removed all the products and categories first from the store."
       );
     } finally {
       setLoading(false);
