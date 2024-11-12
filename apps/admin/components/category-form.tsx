@@ -32,7 +32,7 @@ import {
 } from "@sarvabazaar/ui/components/ui/select";
 
 interface CategoryFormProps {
-  initalData: Category | null;
+  initialData: Category | null;
   billboards: Billboard[];
 }
 
@@ -44,23 +44,23 @@ const formSchema = z.object({
 type CategoryFormValues = z.infer<typeof formSchema>;
 
 export const CategoryForm: React.FC<CategoryFormProps> = ({
-  initalData,
+  initialData,
   billboards,
 }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const params = useParams();
   const router = useRouter();
-  const title = initalData ? "Edit category" : "Create category";
-  const description = initalData ? "Edit a category" : "Add a new category";
-  const toastMessage = initalData
+  const title = initialData ? "Edit category" : "Create category";
+  const description = initialData ? "Edit a category" : "Add a new category";
+  const toastMessage = initialData
     ? "Category updated successfully!"
     : "Category created successfully!";
-  const action = initalData ? "Save Changes" : "Create";
+  const action = initialData ? "Save Changes" : "Create";
 
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initalData || {
+    defaultValues: initialData || {
       name: "",
       billboardId: "",
     },
@@ -69,7 +69,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
   const onSubmit = async (data: CategoryFormValues) => {
     try {
       setLoading(true);
-      if (initalData) {
+      if (initialData) {
         await axios.patch(
           `/api/${params.storeId}/categories/${params.categoryId}`,
           data
@@ -116,7 +116,7 @@ export const CategoryForm: React.FC<CategoryFormProps> = ({
       />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
-        {initalData && (
+        {initialData && (
           <Button
             disabled={loading}
             variant="destructive"
