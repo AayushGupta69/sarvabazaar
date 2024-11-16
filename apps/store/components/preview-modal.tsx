@@ -19,7 +19,7 @@ const PreviewModal = () => {
         <div className="sm:col-span-4 lg:col-span-5">
           <Gallery images={product.images} />
         </div>
-        <div>
+        <div className="sm:col-span-8 lg:col-span-7">
           <Info data={product} />
         </div>
       </div>
