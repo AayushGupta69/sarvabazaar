@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Urbanist } from "next/font/google";
 import "@sarvabazaar/ui/globals.css";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
-const inter = Inter({
+const font = Urbanist({
   subsets: ["latin"],
   display: "swap",
 });
@@ -19,8 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body>{children}</body>
+    <html lang="en" className={font.className} suppressHydrationWarning>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
